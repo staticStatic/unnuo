@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV;
+
 const nextConfig: NextConfig = {
-    basePath: '/unnuo',
+    basePath: isProd ? '/unnuo',
+    assetPrefix: isProd ? '/unnuo',
     output: "export",  // <=== enables static exports
     reactStrictMode: true,
     images: {
