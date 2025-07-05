@@ -1,30 +1,29 @@
+'use client'
+
 import Image from "next/image";
+import { useState } from "react"
+import { useSpring, animated, config } from '@react-spring/web'
+import { getAllUs } from "../lib/u_utils";
 
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
+      <Scrolling/>
+      <hr/>
+      <h1>ṻ</h1>
+      <p>ṵṷṹṻụủứừ⒰υṳ</p>
+      <hr/>
+      <h1>ự</h1>
+      <p>ỤỦỨỪỬῢΰῦṺṴUὺ</p>
+      <hr/>
+      <h1>Ṹ</h1>
+      <p>ῧuṲỮỰṶṸύῠῡ</p>
+      <hr/>
+      <h1>ὺ</h1>
+      <p>ửữựὐὑὒὓὔὕὖὗ</p>
+      <hr/>
+    <Scrolling/>
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
@@ -100,4 +99,41 @@ export default function Home() {
       </footer>
     </div>
   );
+}
+
+
+function Scrolling() {
+  const [flip, set] = useState(false)
+
+  const words = getAllUs().split("");
+
+  const { scroll } = useSpring({
+    scroll: (words.length - 1) * 50,
+    from: { scroll: 0 },
+    reset: true,
+    reverse: flip,
+    delay: 200,
+    config: config.molasses,
+    onRest: () => set(!flip),
+  })
+
+  return (
+    <animated.div
+      style={{
+        position: 'relative',
+        //width: '100%',
+        height: 60,
+        overflow: 'hidden',
+        fontSize: '2.5em',
+      }}
+      scrollTop={scroll}>
+      {words.map((word, i) => (
+        <div
+          key={`${word}_${i}`}
+          style={{  height: 50, textAlign: 'center' }}>
+          {word}
+        </div>
+      ))}
+    </animated.div>
+  )
 }
