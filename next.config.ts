@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const isDev = !!process.env.CODESPACE_NAME;
 
 const nextConfig: NextConfig = {
-    //basePath: isDev ? '' : '/unnuo',
+    basePath: isDev ? '' : '/unnuo',
     assetPrefix: isDev ? '' : '/unnuo',
     output: "export",  // <=== enables static exports
     reactStrictMode: true,
