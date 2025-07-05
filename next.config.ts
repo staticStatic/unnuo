@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const isProd = !process.env.CODESPACE_NAME;
+const isProd = !!process.env.CODESPACE_NAME;
 
 const nextConfig: NextConfig = {
     basePath: isProd ? '/unnuo' : '',
